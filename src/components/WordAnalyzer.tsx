@@ -47,12 +47,7 @@ export default function WordAnalyzer() {
         });
         if(words.length >= 3) return true;
       });
-      console.log([
-        words[0].element,
-        words[1].element,
-        words[2].element
 
-      ].map(v=>v.style))
       if (words.length < 3) {
         document.body.removeChild(container);
         throw new Error('文档中单词数量不足');
@@ -62,7 +57,7 @@ export default function WordAnalyzer() {
         firstWord: {
           text: words[0].text,
           // or 700
-          isBold: words[0].element.style.fontWeight === 'bold' ,
+          isBold: words[0].element.style.fontWeight == 'bold' || words[0].element.style.fontWeight == 700,
         },
         secondWord: {
           text: words[1].text,
@@ -70,7 +65,7 @@ export default function WordAnalyzer() {
         },
         thirdWord: {
           text: words[2].text,
-          fontSize: words[2].element.style.fontSize,
+          fontSize: words[2].element.style.fontSize || '默认字号',
         },
       };
 
@@ -144,10 +139,10 @@ export default function WordAnalyzer() {
           <h3>分析结果</h3>
           <div>
             <p>第一个单词 "<span>{result.firstWord.text}</span>":
-              <span>{result.firstWord.isBold ? ' 是粗体' : ' 不是粗体'}</span>
+              <span>{result.firstWord.isBold ? ' 是粗体' : '无粗体'}</span>
             </p>
             <p>第二个单词 "<span>{result.secondWord.text}</span>":
-              <span>{result.secondWord.isUnderlined ? ' 有下划线' : ' 没有下划线'}</span>
+              <span>{result.secondWord.isUnderlined ? ' 有下划线' : ' 无下划线'}</span>
             </p>
             <p>第三个单词 "<span>{result.thirdWord.text}</span>":
               字体大小 <span>{result.thirdWord.fontSize}</span>
